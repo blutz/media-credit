@@ -1,7 +1,6 @@
 function mediaCreditAutocomplete(id, currAuthorId, currAuthor) {
 	var PLUGIN_DIR = "../wp-content/plugins/media-credit/"; //TODO: better way to do this?
-	var inputField = "input.[id='attachments[" + id + "][media-credit]']"
-	
+	var inputField = "input#attachments\\\\[" + id + "\\\\]\\\\[media-credit\\\\]"
 	jQuery(inputField)
 		.click(function() {
 			this.select();
