@@ -2,6 +2,7 @@ function mediaCreditAutocomplete(id, currAuthorId, currAuthor) {
 	var PLUGIN_DIR = "../wp-content/plugins/media-credit/"; //TODO: better way to do this?
 	var inputField = "input#attachments\\\\[" + id + "\\\\]\\\\[media-credit\\\\]"
 	jQuery(inputField)
+		// TODO: This is not firing for some reason
 		.click(function() {
 			this.select();
 			if (this.value == currAuthor) {
@@ -9,7 +10,9 @@ function mediaCreditAutocomplete(id, currAuthorId, currAuthor) {
 				removeID(id);
 			}
 		})
+		// TODO: This is also not firing for some reason
 		.blur(function() {
+			console.log("BLURRED");
 			if (this.value == "") {
 			/*	
 				this.value = currAuthor;
