@@ -243,11 +243,13 @@ function send_media_credit_to_editor_by_shortcode($html, $attachment_id, $captio
 	else {
 		$credit = 'id=' . $post->post_author;
 		// Add the new author to the $mediaCredit object in the DOM that TinyMCE will use
+/*
 		echo "
 		<script type='text/javascript'>
 		window.parent.\$mediaCredit.id[" . $post->post_author . "] = '" . get_the_author_meta( 'display_name', $post->post_author ) . "';
 		</script>
 		";
+*/;
 	}
 	
 	if ( ! preg_match( '/width="([0-9]+)/', $html, $matches ) )
@@ -259,8 +261,7 @@ function send_media_credit_to_editor_by_shortcode($html, $attachment_id, $captio
 	if ( empty($align) )
 		$align = 'none';
 	
-	$shcode = '[media-credit ' . $credit . ' align="align' . $align . '" width="' . $width . '"]' . $html . '[/media-credit]';
-	
+	$shcode = $html . '[media-credit ' . $credit . ' align="align' . $align . '" width="' . $width . '"]';	
 	return apply_filters( 'media_add_credit_shortcode', $shcode, $html );
 }
 add_filter('image_send_to_editor', 'send_media_credit_to_editor_by_shortcode', 10, 5);
