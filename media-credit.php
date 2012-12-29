@@ -249,7 +249,7 @@ function send_media_credit_to_editor_by_shortcode($html, $attachment_id, $captio
 		window.parent.\$mediaCredit.id[" . $post->post_author . "] = '" . get_the_author_meta( 'display_name', $post->post_author ) . "';
 		</script>
 		";
-*/;
+*/
 	}
 	
 	if ( ! preg_match( '/width="([0-9]+)/', $html, $matches ) )

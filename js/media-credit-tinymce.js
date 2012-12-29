@@ -18,7 +18,7 @@
 		},
 
 		_do_shcode : function(co) {
-			return co.replace(/\[media-credit([^\]]+)\]([\s\S]+?)\[\/media-credit\][\s\u00a0]*/g, function(a,b,c){
+			return co.replace(/\[media-credit([^\]]+)\]()[\s\u00a0]*/g, function(a,b,c){
 				var id, name, cls, w, credit, div_cls;
 				
 				b = b.replace(/\\'|\\&#39;|\\&#039;/g, '&#39;').replace(/\\"|\\&quot;/g, '&quot;');
