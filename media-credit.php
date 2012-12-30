@@ -151,12 +151,13 @@ function get_freeform_media_credit($post = null) {
 function add_media_credit($fields, $post) {
 	$credit = get_media_credit($post);
 	// add requirement for jquery ui core, jquery ui widgets, jquery ui position
-	$html = "<input id='attachments[$post->ID][media-credit]' class='media-credit-input' size='30' value='$credit' name='free-form-{$post->ID}' type='text' />";
+	$html = "<input id='attachments-$post->ID-media-credit' class='media-credit-input' size='30' value='$credit' name='free-form-{$post->ID}' type='text' />";
 	$author = ( get_freeform_media_credit($post) == '' ) ? $post->post_author : '';
 	$author_display = get_media_credit($post);
 	$html .= "<input name='media-credit-$post->ID' id='media-credit-$post->ID' type='hidden' value='$author' />";
-	$html .= "<script type='text/javascript'>jQuery('input#attachments\\\\[$post->ID\\\\]\\\\[media-credit\\\\]').livequery(function() {
-	alert('oh');
+	$html .= "<script type='text/javascript'>jQuery('input#attachments-$post->ID-media-credit').livequery(function() {
+	console.log(this);
+	console.log('is that right?');
 	mediaCreditAutocomplete($post->ID, " . (($author == '') ? -1 : $author) . ", '$author_display');});</script>";
 	$fields['media-credit'] = array(
 		'label' => __('Credit:'),
