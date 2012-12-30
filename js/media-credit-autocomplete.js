@@ -12,7 +12,6 @@ function mediaCreditAutocomplete(id, currAuthorId, currAuthor) {
 		})
 		// TODO: This is also not firing for some reason
 		.blur(function() {
-			console.log("BLURRED");
 			if (this.value == "") {
 			/*	
 				this.value = currAuthor;

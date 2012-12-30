@@ -155,12 +155,15 @@ function add_media_credit($fields, $post) {
 	$author = ( get_freeform_media_credit($post) == '' ) ? $post->post_author : '';
 	$author_display = get_media_credit($post);
 	$html .= "<input name='media-credit-$post->ID' id='media-credit-$post->ID' type='hidden' value='$author' />";
-	$html .= "<script type='text/javascript'>jQuery(document).ready(function() {mediaCreditAutocomplete($post->ID, " . (($author == '') ? -1 : $author) . ", '$author_display');});</script>";
+	$html .= "<script type='text/javascript'>jQuery('input#attachments\\\\[$post->ID\\\\]\\\\[media-credit\\\\]').livequery(function() {
+	alert('oh');
+	mediaCreditAutocomplete($post->ID, " . (($author == '') ? -1 : $author) . ", '$author_display');});</script>";
 	$fields['media-credit'] = array(
 		'label' => __('Credit:'),
 		'input' => 'html',
 		'html' => $html
 	);
+	error_log($html);
 	return $fields;
 }
 add_filter('attachment_fields_to_edit', 'add_media_credit', 10, 2);
@@ -434,6 +437,7 @@ function media_credit_init() { // whitelist options
 
 	if ( is_media_edit_page( ) ) {
 		wp_enqueue_script('jquery-autocomplete', MEDIA_CREDIT_URL . 'js/jquery.autocomplete.pack.js', array('jquery'), '1.1');
+		wp_enqueue_script('jquery-livequery', MEDIA_CREDIT_URL . 'js/jquery.livequery.min.js', array('jquery'), '1.1');
 		wp_enqueue_script('media-credit-autocomplete', MEDIA_CREDIT_URL . 'js/media-credit-autocomplete.js', array('jquery', 'jquery-autocomplete'), '1.0', true);
 	}
 
