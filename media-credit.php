@@ -156,15 +156,12 @@ function add_media_credit($fields, $post) {
 	$author_display = get_media_credit($post);
 	$html .= "<input name='media-credit-$post->ID' id='media-credit-$post->ID' type='hidden' value='$author' />";
 	$html .= "<script type='text/javascript'>jQuery('input#attachments-$post->ID-media-credit').livequery(function() {
-	console.log(this);
-	console.log('is that right?');
 	mediaCreditAutocomplete($post->ID, " . (($author == '') ? -1 : $author) . ", '$author_display');});</script>";
 	$fields['media-credit'] = array(
 		'label' => __('Credit:'),
 		'input' => 'html',
 		'html' => $html
 	);
-	error_log($html);
 	return $fields;
 }
 add_filter('attachment_fields_to_edit', 'add_media_credit', 10, 2);
@@ -409,7 +406,7 @@ function get_editable_authors_by_name( $user_id, $name, $limit ) {
 			LIMIT 0, $limit",
 			strtoupper($name) ));
 	}
-
+	error_log(print_r(apply_filters('get_editable_authors_by_name', $authors, $name),true));
 	return apply_filters('get_editable_authors_by_name', $authors, $name);
 }
 
@@ -440,6 +437,7 @@ function media_credit_init() { // whitelist options
 		wp_enqueue_script('jquery-autocomplete', MEDIA_CREDIT_URL . 'js/jquery.autocomplete.pack.js', array('jquery'), '1.1');
 		wp_enqueue_script('jquery-livequery', MEDIA_CREDIT_URL . 'js/jquery.livequery.min.js', array('jquery'), '1.1');
 		wp_enqueue_script('media-credit-autocomplete', MEDIA_CREDIT_URL . 'js/media-credit-autocomplete.js', array('jquery', 'jquery-autocomplete'), '1.0', true);
+		wp_enqueue_style('media-credit-autocomplete-style',MEDIA_CREDIT_URL . 'css/jquery.autocomplete.css');
 	}
 
 	// Don't bother doing this stuff if the current user lacks permissions as they'll never see the pages
