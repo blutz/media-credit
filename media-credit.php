@@ -151,7 +151,7 @@ function get_freeform_media_credit($post = null) {
 function add_media_credit($fields, $post) {
 	$credit = get_media_credit($post);
 	// add requirement for jquery ui core, jquery ui widgets, jquery ui position
-	$html = "<input id='attachments[$post->ID][media-credit]' class='media-credit-input' size='30' value='$credit' name='free-form-{$post->ID}' />";
+	$html = "<input id='attachments[$post->ID][media-credit]' class='media-credit-input' size='30' value='$credit' name='free-form-{$post->ID}' type='text' />";
 	$author = ( get_freeform_media_credit($post) == '' ) ? $post->post_author : '';
 	$author_display = get_media_credit($post);
 	$html .= "<input name='media-credit-$post->ID' id='media-credit-$post->ID' type='hidden' value='$author' />";
