@@ -406,7 +406,6 @@ function get_editable_authors_by_name( $user_id, $name, $limit ) {
 			LIMIT 0, $limit",
 			strtoupper($name) ));
 	}
-	error_log(print_r(apply_filters('get_editable_authors_by_name', $authors, $name),true));
 	return apply_filters('get_editable_authors_by_name', $authors, $name);
 }
 
