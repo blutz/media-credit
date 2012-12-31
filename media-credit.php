@@ -151,12 +151,13 @@ function get_freeform_media_credit($post = null) {
 function add_media_credit($fields, $post) {
 	$credit = get_media_credit($post);
 	// add requirement for jquery ui core, jquery ui widgets, jquery ui position
-	$html = "<input id='attachments[$post->ID][media-credit]' class='media-credit-input' size='30' value='$credit' name='free-form-{$post->ID}' type='text' />";
+	$html = "<input id='attachments-$post->ID-media-credit' class='media-credit-input' size='30' value='$credit' name='free-form-{$post->ID}' type='text' />";
 	$author = ( get_freeform_media_credit($post) == '' ) ? $post->post_author : '';
 	$author_display = get_media_credit($post);
 	$html .= "<input name='media-credit-$post->ID' id='media-credit-$post->ID' type='hidden' value='$author' />";
 	$html .= "<input name='attachments[$post->ID]' id='attachments[$post->ID]blah' type='hidden' value='1' />";
-	$html .= "<script type='text/javascript'>jQuery(document).ready(function() {
+/* 	$html .= "<script type='text/javascript'>jQuery(document).ready(function() { */
+	$html .= "<script type='text/javascript'>jQuery('input#attachments-$post->ID-media-credit').livequery(function() {	
 	mediaCreditAutocomplete($post->ID, " . (($author == '') ? -1 : $author) . ", '$author_display');});</script>";
 	$fields['media-credit'] = array(
 		'label' => __('Credit:'),
@@ -438,6 +439,7 @@ function media_credit_init() { // whitelist options
 		wp_enqueue_script('jquery-autocomplete', MEDIA_CREDIT_URL . 'js/jquery.autocomplete.pack.js', array('jquery'), '1.1');
 		wp_enqueue_script('media-credit-autocomplete', MEDIA_CREDIT_URL . 'js/media-credit-autocomplete.js', array('jquery', 'jquery-autocomplete'), '1.0', true);
 		wp_enqueue_style('media-credit-autocomplete-style',MEDIA_CREDIT_URL . 'css/jquery.autocomplete.css');
+		wp_enqueue_script('jquery-livequery', MEDIA_CREDIT_URL . 'js/jquery.livequery.min.js', array('jquery'), '1.1');
 	}
 
 	// Don't bother doing this stuff if the current user lacks permissions as they'll never see the pages
