@@ -2,9 +2,9 @@
 /*
 Plugin Name: Media Credit
 Plugin URI: http://www.scottbressler.com/blog/plugins/media-credit/
-Description: This plugin adds a "Credit" field to the media uploading and editing tool and inserts this credit when the images appear on your blog.
-Version: 1.1.2
-Author: Scott Bressler
+Description: This plugin adds a "Credit" field to the media uploading and editing tool and inserts this credit when the images appear on your blog. This is updated for WordPress 3.5 but requires additional modifications.
+Version: 1.2
+Author: Scott Bressler (and Byron Lutz)
 Author URI: http://www.scottbressler.com/blog/
 License: GPL2
 */
