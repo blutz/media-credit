@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Media Credit
-Plugin URI: http://www.scottbressler.com/blog/plugins/media-credit/
+Plugin Name: Media Credit (DO NOT UPDATE)
+Plugin URI: http://www.scottbressler.com/blog/plugins/media-credit/#dailybruin
 Description: This plugin adds a "Credit" field to the media uploading and editing tool and inserts this credit when the images appear on your blog. This is updated for WordPress 3.5 but requires additional modifications.
 Version: 1.2
 Author: Scott Bressler (and Byron Lutz)
@@ -166,7 +166,7 @@ function add_media_credit($fields, $post) {
 	);
 	return $fields;
 }
-add_filter('attachment_fields_to_edit', 'add_media_credit', 10, 2);
+//add_filter('attachment_fields_to_edit', 'add_media_credit', 10, 2);
 
 /**
  * Change the post_author to the entered media credit from add_media_credit() above.
@@ -192,7 +192,7 @@ function save_media_credit($post, $attachment) {
 	}
 	return $post;
 }
-add_filter('attachment_fields_to_save', 'save_media_credit', 10, 2);
+//add_filter('attachment_fields_to_save', 'save_media_credit', 10, 2);
 
 /**
  * If the given media is attached to a post, edit the media-credit info in the attached (parent) post.
@@ -268,7 +268,7 @@ function send_media_credit_to_editor_by_shortcode($html, $attachment_id, $captio
 	$shcode = $html . '[media-credit ' . $credit . ' align="align' . $align . '" width="' . $width . '"]';	
 	return apply_filters( 'media_add_credit_shortcode', $shcode, $html );
 }
-add_filter('image_send_to_editor', 'send_media_credit_to_editor_by_shortcode', 10, 5);
+//add_filter('image_send_to_editor', 'send_media_credit_to_editor_by_shortcode', 10, 5);
 
 /**
  * Add shortcode for media credit. Allows for credit to be specified for media attached to a post
@@ -344,13 +344,13 @@ function media_credit_stylesheet() {
 	else
 		wp_enqueue_style( 'media-credit', MEDIA_CREDIT_URL . 'css/media-credit.css', array(), 1.0, 'all');
 }
-add_action('wp_print_styles', 'media_credit_stylesheet');
+//add_action('wp_print_styles', 'media_credit_stylesheet');
 
 
 //----- Add AJAX hook for Media Credit autocomplete box ----//
 
 // hit ajaxurl with action=media_credit_author_names and q= your search.
-add_action( 'wp_ajax_media_credit_author_names', 'media_credit_author_names_ajax' );
+//add_action( 'wp_ajax_media_credit_author_names', 'media_credit_author_names_ajax' );
 function media_credit_author_names_ajax() {
 	if ( ! isset( $_GET['q'] ) ) {
 		die('0'); // standard response for failure
@@ -415,8 +415,8 @@ function get_editable_authors_by_name( $user_id, $name, $limit ) {
 
 //----- Add menus and settings for plugin -----//
 
-if ( is_admin() )
-	add_action( 'admin_menu', 'add_media_credit_menu' );
+// if ( is_admin() )
+// 	add_action( 'admin_menu', 'add_media_credit_menu' );
 
 function add_media_credit_menu() {
 	// Display settings for plugin on the built-in Media options page
@@ -507,7 +507,7 @@ function media_credit_action_links($links, $file) {
 	}
 	return $links;
 }
-add_filter('plugin_action_links', 'media_credit_action_links', 10, 2);
+//add_filter('plugin_action_links', 'media_credit_action_links', 10, 2);
 
 function media_credit_settings_section() {
 	echo "<a name='media-credit'></a>";
