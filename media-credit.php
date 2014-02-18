@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Media Credit (DO NOT UPDATE)
-Plugin URI: http://www.scottbressler.com/blog/plugins/media-credit/#dailybruin
-Description: This plugin adds a "Credit" field to the media uploading and editing tool and inserts this credit when the images appear on your blog. This is updated for WordPress 3.5 but requires additional modifications.
-Version: 1.2
+Plugin URI: https://github.com/blutz/media-credit
+Description: This plugin adds a "Credit" field to the media uploading and editing tool and inserts this credit when the images appear on your blog. The interface is disabled but the functions to show credits still work.
+Version: 1.3
 Author: Scott Bressler (and Byron Lutz)
 Author URI: http://www.scottbressler.com/blog/
 License: GPL2
